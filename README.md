@@ -6,56 +6,75 @@ POSCORE는 ProjectOS의 **배포 원본**입니다.
 
 ## 처음 사용하는 경우
 
-### 1. 자기 ProjectOS 저장소를 준비합니다
+복잡하게 설치할 필요는 없습니다.
 
-GitHub에 자신이 소유한 별도 저장소를 만듭니다. 개인 운영정보가 기록될 수 있으므로 기본 권장은 **Private 저장소**입니다.
+### 1. GitHub에 빈 저장소를 하나 만듭니다
+
+자신의 GitHub에 ProjectOS용 빈 저장소를 하나 만듭니다. 개인 운영정보가 기록될 수 있으므로 **Private 저장소를 권장**합니다.
+
+저장소 이름은 자유입니다. 예:
+
+```text
+MyProjectOS
+ProjectOS
+POS
+```
+
+### 2. ChatGPT에 GitHub를 연결합니다
+
+ChatGPT가 자신의 GitHub 저장소를 읽고 쓸 수 있도록 GitHub 연결을 준비합니다.
+
+### 3. ChatGPT에게 그대로 요청합니다
+
+아래 문장에서 `내저장소이름`만 방금 만든 저장소 이름으로 바꿉니다.
+
+```text
+https://github.com/crjester/POSCORE 을 내 내저장소이름 저장소로 복사해서 ProjectOS로 초기화해줘.
+```
 
 예:
 
 ```text
-내 GitHub
-└─ ProjectOS   ← 실제로 사용하는 저장소
-
-crjester/POSCORE
-└─ 배포 원본   ← 직접 운영하지 않음
+https://github.com/crjester/POSCORE 을 내 MyProjectOS 저장소로 복사해서 ProjectOS로 초기화해줘.
 ```
 
-POSCORE의 Core를 자기 저장소로 복제한 뒤부터는 `crjester/POSCORE`가 아니라 **자기 ProjectOS 저장소가 운영 Source of Truth**입니다.
+ChatGPT는 POSCORE를 **배포 원본**으로 읽고, 실제 운영에 사용할 Core를 사용자의 저장소로 복사해야 합니다. 이후 개인 설정, 문서, 자원 등록, 프로젝트 연결과 운영 상태는 공개 POSCORE가 아니라 사용자의 ProjectOS 저장소에 기록합니다.
 
-### 2. ChatGPT 사용자 지정 지침을 연결합니다
+> GitHub 연결에서 저장소 생성 기능을 사용할 수 없는 경우가 있으므로 빈 저장소는 사용자가 먼저 만드는 것을 기본 절차로 합니다.
 
-ChatGPT에서 GitHub를 연결한 뒤 **설정 → 개인 설정의 사용자 지정 지침**에 아래 문구를 넣습니다. `<내 GitHub 계정>/<내 ProjectOS 저장소>` 부분은 자신의 실제 저장소 주소로 바꿉니다.
+### 4. 사용자 지정 지침을 설정합니다
+
+초기화가 끝나면 ChatGPT에게 다음과 같이 요청합니다.
 
 ```text
-ProjectOS를 사용할 때에는 연결된 GitHub의
-<내 GitHub 계정>/<내 ProjectOS 저장소>
-저장소를 외부 진입점이자 운영 Source of Truth로 사용한다.
-
-사용자가 "SYS-MODE 적용", "DEV-MODE 적용", "ED-MODE 적용", "도움말",
-ProjectOS 상태 확인, 초기 상태 비교 또는 복구를 요청하면:
-
-1. 연결된 GitHub에서 위의 개인 ProjectOS 저장소에 접근한다.
-2. 현재 README.md를 먼저 읽는다.
-3. README.md가 지정하는 최신 부팅 절차, 역할 등록부와 역할 프로필을 실제로 읽고 따른다.
-4. 세션 기억이나 이전 대화만으로 ProjectOS 또는 MODE를 재구성하지 않는다.
-5. 필요한 외부 자료에 접근할 수 없으면 임의로 추정하지 말고 접근 불가 또는 DEGRADED 상태를 알린다.
-6. 실제 외부 부팅 절차가 완료되기 전에는 MODE 적용 완료 또는 READY라고 선언하지 않는다.
-7. 개인 문서, 자원 등록, 상태 변경 및 ProjectOS 운영 변경은 배포 원본 POSCORE가 아니라 위의 개인 ProjectOS 저장소에 기록한다.
-
-ProjectOS와 관계없는 일반 요청은 평소처럼 처리한다.
+내 ProjectOS를 새 채팅에서도 부팅할 수 있도록 ChatGPT 사용자 지정 지침에 넣을 문구를 만들어줘.
 ```
 
-### 3. 새 채팅에서 부팅합니다
+생성된 문구는 **공개 `crjester/POSCORE`가 아니라 자신의 ProjectOS 저장소를 가리켜야 합니다.** 사용자 지정 지침에는 MODE의 세부 내용을 복사하지 않고 개인 ProjectOS의 외부 진입점만 둡니다.
+
+원본 템플릿은 `bootstrap/CHATGPT_INSTRUCTIONS.md`에 있습니다.
+
+### 5. 새 채팅에서 확인합니다
+
+사용자 지정 지침을 저장한 뒤 새 채팅을 열고:
 
 ```text
 SYS-MODE 적용
 ```
 
-SYS가 **자기 ProjectOS 저장소**의 README, Common Boot와 SYS Profile을 실제로 읽으면 최초 연결이 성공한 것입니다.
+을 입력합니다.
 
-> `crjester/POSCORE`를 가리킨 상태로 개인 운영을 시작하지 마세요. POSCORE는 배포/업데이트 원본이고 사용자별 변경사항을 저장하는 장소가 아닙니다.
+SYS가 **자신의 ProjectOS 저장소**에서 README, Common Boot와 SYS Profile을 실제로 읽으면 연결이 성공한 것입니다.
 
-자세한 설치 계약은 `docs/INSTALL.md`, 사용자 지정 지침 템플릿은 `bootstrap/CHATGPT_INSTRUCTIONS.md`에 있습니다.
+이후:
+
+```text
+도움말
+```
+
+로 기본 사용법을 확인할 수 있습니다.
+
+> `crjester/POSCORE`는 배포와 업데이트를 위한 원본입니다. 개인 ProjectOS의 작업 저장소로 직접 사용하지 않습니다.
 
 ## 기본 MODE
 

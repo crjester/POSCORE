@@ -16,6 +16,7 @@ This file is POSCORE's stable address book. It records discovery coordinates and
 | Baseline manifest | Core recovery contract | `baseline/MANIFEST.md` |
 | ChatGPT bootstrap template | Fresh-session entry pointer | `bootstrap/CHATGPT_INSTRUCTIONS.md` |
 | Installation guide | Human/bootstrap boundary | `docs/INSTALL.md` |
+| Operational Messaging contract | Durable MODE-to-MODE handoff | `messaging/CONTRACT.md` |
 
 ## Connected resources
 
@@ -26,3 +27,8 @@ Add a connected resource only after it has been actually discovered/verified. Re
 ## Maintenance
 
 If a resource has its own authoritative bootstrap or documentation, register the stable route to that authority instead of duplicating its internal details here.
+
+
+## Installation-required external capability
+
+Operational Messaging is required. A fresh distribution contains the portable contract, not user-specific runtime coordinates. SYS provisions and verifies a backend, then registers its stable discovery route here or through an external platform bootstrap.

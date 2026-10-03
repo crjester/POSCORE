@@ -14,6 +14,8 @@ Baseline-protected paths:
 - `registry/RESOURCES.md`
 - `help/HELP.md`
 - `baseline/MANIFEST.md`
+- `bootstrap/CHATGPT_INSTRUCTIONS.md`
+- `docs/INSTALL.md`
 
 ## Recovery authority
 

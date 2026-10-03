@@ -1,50 +1,94 @@
 # POSCORE
 
-POSCORE is the public core distribution of ProjectOS.
+POSCORE는 ProjectOS의 공개 배포용 코어입니다.
 
-It is intentionally small: it provides a reproducible operating layer that lets an AI session discover its connected resources, restore an appropriate role, build missing development/runtime environments when authorized, verify its work, and record durable state in external Sources of Truth.
+아는 사람끼리 간단히 공유하고, 새로운 ChatGPT 계정이나 PC/VM 환경에서도 같은 ProjectOS 운영 방식을 다시 구성할 수 있도록 만든 최소 배포판입니다.
 
-## Core roles
+## 처음 사용하는 경우
 
-- `SYS-MODE 적용` — conservative ProjectOS system administration, integrity, bootstrap and recovery.
-- `DEV-MODE 적용` — normal engineering, development, environment construction, deployment and verification.
-- `ED-MODE 적용` — documentation, editorial work and publication preparation. A blog is optional and is not part of POSCORE.
-- `도움말` — show the short user help.
+먼저 ChatGPT에서 GitHub를 연결합니다. 그다음 **설정 → 개인 설정의 사용자 지정 지침**에 아래 문구를 그대로 넣습니다.
 
-## Design boundary
+```text
+ProjectOS를 사용할 때에는 연결된 GitHub의 crjester/POSCORE 저장소를 최초 진입점으로 사용한다.
 
-POSCORE does **not** ship the owner's current services, blog, MarketLens, Mini PC configuration, private projects, credentials, IP addresses, runtime databases or personal operating state.
+사용자가 "SYS-MODE 적용", "DEV-MODE 적용", "ED-MODE 적용", "도움말",
+ProjectOS 상태 확인, 초기 상태 비교 또는 복구를 요청하면:
 
-POSCORE stores operating rules and stable discovery information. Mutable project/service/runtime state belongs to the responsible external Source of Truth.
+1. 연결된 GitHub에서 crjester/POSCORE 저장소에 접근한다.
+2. 현재 README.md를 먼저 읽는다.
+3. README.md가 지정하는 최신 부팅 절차, 역할 등록부와 역할 프로필을 실제로 읽고 따른다.
+4. 세션 기억이나 이전 대화만으로 ProjectOS 또는 MODE를 재구성하지 않는다.
+5. 필요한 외부 자료에 접근할 수 없으면 임의로 추정하지 말고 접근 불가 또는 DEGRADED 상태를 알린다.
+6. 실제 외부 부팅 절차가 완료되기 전에는 MODE 적용 완료 또는 READY라고 선언하지 않는다.
 
-## First installation
+ProjectOS와 관계없는 일반 요청은 평소처럼 처리한다.
+```
 
-See `docs/INSTALL.md`. A fresh ChatGPT account needs one durable bootstrap pointer in its custom instructions so MODE commands can locate the user's installed ProjectOS repository. The pointer template is `bootstrap/CHATGPT_INSTRUCTIONS.md`.
+저장한 뒤 **새 채팅**을 열고 다음과 같이 입력합니다.
 
-POSCORE itself is the public distribution source; an installed user's ProjectOS repository is the operational SoT.
+```text
+SYS-MODE 적용
+```
 
-## Boot
+SYS가 POSCORE를 실제로 읽고 부팅되면 최초 연결이 성공한 것입니다. 이후 SYS가 개인 ProjectOS를 초기화하면 사용자 지정 지침의 진입점을 개인 저장소로 교체할 수 있습니다.
 
+자세한 설치 절차는 `docs/INSTALL.md`, 사용자 지정 지침 원본 템플릿은 `bootstrap/CHATGPT_INSTRUCTIONS.md`에 있습니다.
 
-For a MODE command:
+## 기본 MODE
 
-1. Read `profiles/REGISTRY.md`.
-2. Read `boot/BOOT.md`.
-3. Load the selected profile.
-4. Discover only the resources required for readiness.
-5. Report READY or DEGRADED with evidence.
-6. Restore project/task state only when an actual task requires it.
+- `SYS-MODE 적용` — ProjectOS 자체의 초기 설정, 점검, 오류 수정, 기준 상태 비교와 복구
+- `DEV-MODE 적용` — 평상시 개발, 서버 작업, 필요한 실행환경 구축, 배포와 검증
+- `ED-MODE 적용` — 문서, 설명서, 기록, 편집 및 게시 작업
+- `도움말` — 간단한 사용 안내
 
-Do not synthesize MODE behavior from session memory when these external files are available.
+MODE 이름을 기억하지 못해도 괜찮습니다. 원하는 작업을 자연어로 말하면 ProjectOS가 적절한 역할을 안내하도록 설계합니다.
 
-## Self-building environment
+## 역할 구분
 
-Missing tooling is not, by itself, a reason to stop. DEV-MODE may inspect the host and build the minimum authorized development/runtime environment required by the task, then verify it and record the durable result. It must reuse suitable existing resources before adding new ones.
+### SYS-MODE
 
-## Recovery
+ProjectOS 자체를 관리하는 보수적인 시스템 관리자입니다. 초기 설정, Core 무결성, 부팅 경로, 자원 등록, 기준 상태 비교와 복구를 담당합니다.
 
-`baseline/MANIFEST.md` defines the protected POSCORE baseline. SYS-MODE owns comparison and recovery. Recovery must preserve user projects, data and unrelated resources by default, and must require explicit approval before destructive replacement.
+일반 개발 업무를 대신하지 않으며, ProjectOS 구조를 편의상 임의로 확장하지 않습니다. 파괴적인 복구는 사용자 승인 없이 실행하지 않습니다.
 
-## License
+### DEV-MODE
 
-No license is currently granted. Public visibility permits viewing and GitHub-platform use subject to GitHub's terms, but this repository does not currently grant a general open-source license.
+평상시 개발과 기술 작업을 담당합니다. 프로그램 개발, 서버 구성, 자동화, 배포와 실행 검증을 수행합니다.
+
+필요한 Python, Node.js, Docker 등의 환경이 없다는 이유만으로 작업을 중단하지 않습니다. 현재 환경을 먼저 조사하고, 필요한 최소 환경을 구축하고 검증한 뒤 원래 작업을 계속합니다.
+
+### ED-MODE
+
+사람이 읽는 문서와 콘텐츠를 담당합니다. 설명서, 작업 기록, 릴리스 문서, 편집 및 게시용 콘텐츠를 작성합니다.
+
+블로그는 POSCORE의 필수 구성요소가 아닙니다. 나중에 별도의 게시 환경이 만들어지면 그 환경을 사용할 수 있습니다.
+
+## POSCORE에 포함하지 않는 것
+
+이 저장소에는 특정 사용자의 현재 서버, 블로그, MarketLens, Mini PC 설정, 개인 프로젝트, 계정 정보, IP 주소, 인증정보, 운영 데이터베이스 또는 현재 실행 상태를 포함하지 않습니다.
+
+POSCORE에는 **ProjectOS가 동작하는 방법과 다시 복구할 수 있는 최소 규칙**만 둡니다. 각 프로젝트와 서비스의 실제 상태는 각자의 외부 Source of Truth에서 관리합니다.
+
+## 동작 구조
+
+```text
+ChatGPT 사용자 지정 지침
+        ↓
+POSCORE README.md
+        ↓
+Role Registry + Common Boot
+        ↓
+SYS / DEV / ED
+        ↓
+연결된 GitHub · PC/VM · MCP · 프로젝트/서비스 SoT
+```
+
+## 복구
+
+`baseline/MANIFEST.md`가 POSCORE Core의 복구 범위를 정의합니다.
+
+SYS는 현재 상태와 기준 상태를 비교하고 필요한 복구 범위를 판단합니다. 기본 복구 대상은 POSCORE Core이며, 사용자 프로젝트·데이터·인증정보·외부 서비스는 임의로 덮어쓰지 않습니다.
+
+## 라이선스
+
+현재 별도의 오픈소스 라이선스를 부여하지 않았습니다. 저장소는 공개되어 내용을 볼 수 있지만, 일반적인 복제·재배포·수정 권한을 별도 라이선스로 허가한 상태는 아닙니다.

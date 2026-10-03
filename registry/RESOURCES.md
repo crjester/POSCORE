@@ -14,6 +14,8 @@ This file is POSCORE's stable address book. It records discovery coordinates and
 | ED Profile | Editorial/documentation work | `profiles/ED.md` |
 | Help | User-facing command reminder | `help/HELP.md` |
 | Baseline manifest | Core recovery contract | `baseline/MANIFEST.md` |
+| ChatGPT bootstrap template | Fresh-session entry pointer | `bootstrap/CHATGPT_INSTRUCTIONS.md` |
+| Installation guide | Human/bootstrap boundary | `docs/INSTALL.md` |
 
 ## Connected resources
 

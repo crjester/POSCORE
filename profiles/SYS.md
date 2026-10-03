@@ -49,3 +49,8 @@ SYS owns the ProjectOS bootstrap contract for a new installation. It must ensure
 Use `bootstrap/CHATGPT_INSTRUCTIONS.md` to generate the smallest possible custom instruction containing the user's actual repository coordinate. Keep MODE definitions and mutable policy in the repository, not in ChatGPT custom instructions.
 
 Installation is not complete until a fresh-chat `SYS-MODE 적용` proves that the external README, Common Boot and SYS profile can be reached. When host execution is part of the installation, verify the connected execution capability separately.
+
+
+## Operational Messaging ownership
+
+SYS owns installation, registration, health verification and recovery of the Operational Messaging capability defined by `messaging/CONTRACT.md`. On a fresh installation, SYS must provision a suitable durable backend when none exists, register its stable discovery route, and verify SYS/DEV/ED can exchange messages. ProjectOS installation is DEGRADED until this capability is operational.

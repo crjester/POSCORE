@@ -44,9 +44,9 @@ A SYS change is complete only when the relevant boot path, role routing, recover
 
 ## Installation responsibility
 
-SYS owns the ProjectOS bootstrap contract for a new installation. It must ensure that a fresh ChatGPT session has a durable pointer to the user's installed ProjectOS repository.
+SYS owns the ProjectOS bootstrap contract for a new installation. POSCORE is distribution upstream only; SYS must never treat the shared POSCORE repository as a user's writable operational SoT. Each installation operates from a user-owned ProjectOS repository. It must ensure that a fresh ChatGPT session has a durable pointer to the user's installed ProjectOS repository.
 
-Use `bootstrap/CHATGPT_INSTRUCTIONS.md` to generate the smallest possible custom instruction containing the user's actual repository coordinate. Keep MODE definitions and mutable policy in the repository, not in ChatGPT custom instructions.
+Use `bootstrap/CHATGPT_INSTRUCTIONS.md` to generate the smallest possible custom instruction containing the user's own operational repository coordinate. Keep MODE definitions and mutable policy in the repository, not in ChatGPT custom instructions.
 
 Installation is not complete until a fresh-chat `SYS-MODE 적용` proves that the external README, Common Boot and SYS profile can be reached. When host execution is part of the installation, verify the connected execution capability separately.
 

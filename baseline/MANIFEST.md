@@ -16,6 +16,7 @@ Baseline-protected paths:
 - `baseline/MANIFEST.md`
 - `bootstrap/CHATGPT_INSTRUCTIONS.md`
 - `docs/INSTALL.md`
+- `messaging/CONTRACT.md`
 
 ## Recovery authority
 

@@ -16,8 +16,9 @@ If a required authoritative source is unavailable, conflicting or incomplete, re
 2. Load `registry/RESOURCES.md`.
 3. Load the selected Role Profile.
 4. Discover connected capabilities needed by that profile using non-destructive probes.
-5. Report the selected role, reachable resources and READY/DEGRADED state.
-6. Load project/service/runtime state only when the actual task requires it.
+5. Discover the registered Operational Messaging backend, verify reachability, and query the selected participant's incomplete-message summary according to `messaging/CONTRACT.md`.
+6. Report the selected role, reachable resources, Operational Messaging summary and READY/DEGRADED state.
+7. Load project/service/runtime state only when the actual task requires it.
 
 ## Source classes
 
@@ -47,3 +48,8 @@ Destructive operations, credential changes, access-control changes, irreversible
 ## Completion
 
 Never report success from intent alone. Separate implementation, automated verification, live verification and user acceptance where applicable.
+
+
+## Operational Messaging
+
+Operational Messaging is boot-critical for a complete POSCORE installation. Boot discovery is informational only: never auto-execute discovered messages. An explicit processing request must fresh-query the backend before execution.

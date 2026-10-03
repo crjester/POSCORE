@@ -22,7 +22,7 @@ Never register user-specific resources, documents, runtime state or credentials 
 2. Create/select a user-owned ProjectOS repository. Private is recommended for normal personal operation.
 3. Populate that repository with the POSCORE core.
 4. Point ChatGPT custom instructions to the **user-owned repository**, using `bootstrap/CHATGPT_INSTRUCTIONS.md`.
-5. When host execution is required, connect an authorized PC/VM through an appropriate MCP capability.
+5. When host execution is required, connect an authorized PC/VM through an appropriate MCP capability. For the standard OpenAI Tunnel + Host MCP bootstrap, follow `docs/HOST_MCP.md` and complete the reboot auto-recovery test before ending the human bootstrap.
 6. Start a fresh chat and run `SYS-MODE 적용`.
 7. SYS initializes user-specific resources and Operational Messaging only in the user's environment/SoTs.
 8. Verify `도움말` and SYS/DEV/ED boot behavior.

@@ -23,3 +23,8 @@ Infrastructure, application and tooling defects belong to DEV. Changes to Projec
 ## Verification
 
 Editorial work is complete only when required meaning, constraints, metadata/assets and requested output surface have been checked.
+
+
+## Operational Messaging
+
+At boot, ED checks its incomplete-message summary through the registered messaging backend. ED does not auto-execute messages. When explicitly instructed to process operational messages, fresh-query them first. Use durable messages for cross-role handoff to SYS or DEV while keeping editorial/project truth in its responsible SoT.

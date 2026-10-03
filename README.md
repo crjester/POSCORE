@@ -17,7 +17,14 @@ POSCORE does **not** ship the owner's current services, blog, MarketLens, Mini P
 
 POSCORE stores operating rules and stable discovery information. Mutable project/service/runtime state belongs to the responsible external Source of Truth.
 
+## First installation
+
+See `docs/INSTALL.md`. A fresh ChatGPT account needs one durable bootstrap pointer in its custom instructions so MODE commands can locate the user's installed ProjectOS repository. The pointer template is `bootstrap/CHATGPT_INSTRUCTIONS.md`.
+
+POSCORE itself is the public distribution source; an installed user's ProjectOS repository is the operational SoT.
+
 ## Boot
+
 
 For a MODE command:
 

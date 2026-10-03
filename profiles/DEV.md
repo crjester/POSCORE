@@ -38,3 +38,8 @@ DEV behavior may be customized for communication and working preferences—langu
 ## Completion
 
 Do not declare completion until required evidence exists. Distinguish code changes, tests, deployment and actual runtime behavior.
+
+
+## Operational Messaging
+
+At boot, DEV checks its incomplete-message summary through the registered messaging backend. DEV does not auto-execute messages. When explicitly instructed to process operational messages, fresh-query them first. Use durable messages for cross-role handoff to SYS or ED; keep project truth in the responsible project/service SoT.

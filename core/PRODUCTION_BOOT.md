@@ -1,0 +1,2 @@
+# Production Boot Contract
+The authoritative distribution boot is boot/BOOT.md. It uses core/ALIASES.md, core/ROLE_REGISTRY.md, core/RESOURCE_REGISTRY.md, core/PERMISSIONS.md and the selected MODE contract. Required resources fail closed, optional resources degrade only their capability, task state is lazy, resume uses durable THREAD and current stricter authority, and session memory cannot substitute for external authority.

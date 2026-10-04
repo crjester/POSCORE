@@ -1,34 +1,11 @@
 # POSCORE Installation
+1. Connect GitHub and create/select a user-owned ProjectOS repository; private is recommended.
+2. Copy the POSCORE distribution into that repository without importing any other user's bindings/state.
+3. Configure environment-specific resource bindings outside the immutable Core contracts.
+4. Set ChatGPT bootstrap instructions from bootstrap/CHATGPT_INSTRUCTIONS.md to the user repository.
+5. If host execution is needed, follow docs/HOST_MCP.md and verify reboot recovery.
+6. Fresh-chat boot ENG-MODE, PUB-MODE and RES-MODE; verify canonical roles and required resources.
+7. Verify Operational Messaging/THREAD integration if messaging is configured.
+8. Record the installed immutable release and LKG rollback reference.
 
-## Repository model
-
-POSCORE is the distribution upstream, not a shared operational repository.
-
-Each user must operate from a repository they control:
-
-```
-crjester/POSCORE (distribution upstream)
-        ↓ initial copy / authorized distribution
-USER/ProjectOS (operational SoT)
-        ↓
-user-specific resources, state and projects
-```
-
-Never register user-specific resources, documents, runtime state or credentials in the upstream POSCORE repository.
-
-## Human bootstrap boundary
-
-1. Connect GitHub to ChatGPT.
-2. Create/select a user-owned ProjectOS repository. Private is recommended for normal personal operation.
-3. Populate that repository with the POSCORE core.
-4. Point ChatGPT custom instructions to the **user-owned repository**, using `bootstrap/CHATGPT_INSTRUCTIONS.md`.
-5. When host execution is required, connect an authorized PC/VM through an appropriate MCP capability. For the standard OpenAI Tunnel + Host MCP bootstrap, follow `docs/HOST_MCP.md` and complete the reboot auto-recovery test before ending the human bootstrap.
-6. Start a fresh chat and run `SYS-MODE 적용`.
-7. SYS initializes user-specific resources and Operational Messaging only in the user's environment/SoTs.
-8. Verify `도움말` and SYS/DEV/ED boot behavior.
-
-After installation, POSCORE remains an upstream distribution/recovery reference. It is not the destination for normal user writes.
-
-## Safety
-
-Never place API keys, SSH private keys, passwords, tunnel secrets or personal runtime data in POSCORE or generated custom instructions.
+Never place secrets or live user state in POSCORE.

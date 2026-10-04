@@ -1,55 +1,11 @@
-# POSCORE Common Boot
+# ProjectOS Core Production Boot
+1. Resolve alias/canonical role through core/ALIASES.md and core/ROLE_REGISTRY.md.
+2. Load core/RESOURCE_REGISTRY.md plus the user's environment bindings; run only declared non-destructive probes.
+3. Load the MODE contract and core/PERMISSIONS.md; calculate current effective authority. Alias/resource/participant context cannot widen authority.
+4. Discover the user's Platform/resources through registered bindings. Required failure => BLOCKED; optional failure => DEGRADED.
+5. Boot-only requests do not load project/task SoT or THREAD.
+6. Task requests lazily load only required authoritative SoT.
+7. Resume loads durable THREAD, restores objective/progress/verification/next_action and applies stricter current authority without replaying verified work.
+8. Missing/corrupt/incompatible required state => BLOCKED/ESCALATED; never reconstruct from session memory.
 
-## Purpose
-
-Restore the minimum trustworthy operating context for the selected role, then stop. Boot establishes routes; it does not eagerly restore every project.
-
-## Authority
-
-External Sources of Truth outrank session memory. POSCORE does not depend on remembered prior chats as an authoritative definition of a MODE or project state.
-
-If a required authoritative source is unavailable, conflicting or incomplete, report DEGRADED rather than inventing missing state.
-
-## Sequence
-
-1. Resolve the exact user command through `profiles/REGISTRY.md`.
-2. Load `registry/RESOURCES.md`.
-3. Load the selected Role Profile.
-4. Discover connected capabilities needed by that profile using non-destructive probes.
-5. Discover the registered Operational Messaging backend, verify reachability, and query the selected participant's incomplete-message summary according to `messaging/CONTRACT.md`.
-6. Report the selected role, reachable resources, Operational Messaging summary and READY/DEGRADED state.
-7. Load project/service/runtime state only when the actual task requires it.
-
-## Source classes
-
-- POSCORE — boot, role routing, core profiles, recovery rules and stable discovery coordinates.
-- Project SoT — architecture, decisions, roadmap, code and project state.
-- Environment/Service SoT — durable infrastructure and service policy.
-- Live runtime — evidence of what is actually installed or running.
-- Publication — presentation output; never a substitute for project truth.
-
-Keep STATE, HISTORY, RUNTIME and PUBLICATION distinct.
-
-## Environment principle
-
-Do not assume a specific PC, VM, operating system, directory layout, language runtime, container engine or hosting provider.
-
-When an authorized task needs a missing environment:
-1. inspect the current host and connected resources;
-2. reuse a suitable existing environment when possible;
-3. define the minimum required change;
-4. install/configure only what is necessary;
-5. verify the environment before relying on it;
-6. perform the task;
-7. record durable environment/discovery information in its responsible SoT.
-
-Destructive operations, credential changes, access-control changes, irreversible migrations and broad system replacement require explicit user approval.
-
-## Completion
-
-Never report success from intent alone. Separate implementation, automated verification, live verification and user acceptance where applicable.
-
-
-## Operational Messaging
-
-Operational Messaging is boot-critical for a complete POSCORE installation. Boot discovery is informational only: never auto-execute discovered messages. An explicit processing request must fresh-query the backend before execution.
+Operational Messaging discovery is informational. Explicit processing must fresh-read message state and use core/MESSAGE_THREAD_BRIDGE.md. Completion always requires applicable verification.

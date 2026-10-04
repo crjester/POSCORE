@@ -1,43 +1,8 @@
-# POSCORE Baseline Manifest
+# POSCORE Core Manifest
+Distribution generation: Core v2
+Frozen semantic source: testOS production candidate 83db535bc8ce831801039ded6b25758054be7481
+Canonical roles: role.engineering, role.editorial, role.research
+Aliases: ENG-MODE, PUB-MODE, RES-MODE
 
-## Purpose
-
-This manifest defines the protected recovery surface of the public POSCORE core.
-
-Baseline-protected paths:
-- `README.md`
-- `boot/BOOT.md`
-- `profiles/REGISTRY.md`
-- `profiles/SYS.md`
-- `profiles/DEV.md`
-- `profiles/ED.md`
-- `registry/RESOURCES.md`
-- `help/HELP.md`
-- `baseline/MANIFEST.md`
-- `bootstrap/CHATGPT_INSTRUCTIONS.md`
-- `docs/INSTALL.md`
-- `messaging/CONTRACT.md`
-
-## Recovery authority
-
-The canonical baseline is a known-good tagged/released revision of the public POSCORE repository, not an in-memory copy and not the current potentially damaged working tree.
-
-Until formal releases exist, the repository's reviewed Git history is the recovery evidence.
-
-## Reset boundary
-
-Baseline recovery does not include user projects, external repositories, service data, credentials, generated artifacts or unrelated host configuration.
-
-SYS must compare before replacing. Destructive replacement requires explicit user approval and must preserve a recovery path when practical.
-
-## Evolution
-
-A baseline changes only through an intentional POSCORE core revision with verification of:
-- root entry;
-- Common Boot;
-- all registered profiles;
-- help route;
-- resource discovery contract;
-- recovery contract.
-
-Future releases should tag the verified baseline so SYS can identify a precise known-good revision.
+Frozen semantic domains: design/, profiles/, verification/, core contracts. Distribution-only identity and operator documentation are adapted for POSCORE naming and installation boundaries. User bindings/state/credentials are excluded.
+Rollback baseline before Core v2: POSCORE 21cb8dcb873a4445c73cfed8c98a197829a0854a and backup/pre-core-v2-20261004.

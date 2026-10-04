@@ -8,6 +8,7 @@ POSCORE defines logical resource capabilities only. Physical connector/plugin na
 | os.boot | read production boot contract | yes |
 | platform.bootstrap | discover environment capabilities/resources | yes |
 | platform.messaging | discover Operational Messaging backend | no |
+| platform.publication | discover Publication/CMS capability | no |
 | os.recovery | read recovery contract | yes |
 
 Installation supplies binding_key -> connector coordinate. Connector display names are never resource IDs, roles, PROFILEs, or authority identifiers. Replacing connector A with connector B changes only the environment binding map; canonical roles, MODE contracts, PROFILE access, VERIFICATION contracts and authority remain unchanged. Missing required capability is BLOCKED; optional failure is DEGRADED. Connector metadata grants no authority. Credentials/live state remain outside POSCORE.

@@ -5,7 +5,7 @@
 4. Set ChatGPT bootstrap instructions from bootstrap/CHATGPT_INSTRUCTIONS.md to the user repository.
 5. If host execution is needed, follow docs/HOST_MCP.md and verify reboot recovery.
 6. Fresh-chat boot ENG-MODE, PUB-MODE and RES-MODE; verify canonical roles and required resources.
-7. Verify Operational Messaging/THREAD integration if messaging is configured.
+7. Configure `platform.messaging` in the installation Registry. For a fresh local store, initialize it with `install/messaging/init_store.py`; for an existing store, connect without reset and validate schema/version. Then verify Operational Messaging/THREAD integration.
 8. Record the installed immutable release and LKG rollback reference.
 
 Never place secrets or live user state in POSCORE.
